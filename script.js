@@ -19,6 +19,7 @@ function butunlemeKontrol() {
   if (document.getElementById("butunleme").value != "") {
     document.getElementById("finallabel").style.display = "none";
     document.getElementById("final").style.display = "none";
+    document.getElementById("final").value = "";
     butunlemeGirdi = true;
   } else {
     document.getElementById("finallabel").style.display = "flex";
@@ -48,16 +49,15 @@ function hesapla() {
     }
 
     donemSonuNotu = butunlemeNotu > 0 ? butunlemeNotu : finalNotu;
-
     basariNotu = yilIciNotu * 0.4 + donemSonuNotu * 0.6;
 
-    if (vizeNotu == 0 || isNaN(vizeNotu)) {
+    if (vizeNotu == 0) {
       document.getElementById("uyari").style.display = "flex";
       document.getElementById("uyari").innerText =
         "Uyarı : Vize Notu Girininiz (Yıl İçi için gerekli)";
       sonucGizle();
       return;
-    } else if ((finalNotu == 0 || isNaN(finalNotu)) && !butunlemeGirdi) {
+    } else if (finalNotu == 0 && !butunlemeGirdi) {
       document.getElementById("uyari").style.display = "flex";
       document.getElementById("uyari").innerText =
         "Uyarı : Final Notu Girininiz";
@@ -87,7 +87,7 @@ function hesapla() {
         sonucGizle();
         return;
       }
-      console.log(basariNotu);
+
       if (sinavNotu < 50) {
         harfNotu = "F3";
         durum = false;
@@ -121,8 +121,6 @@ function hesapla() {
         aciklama = "Başarı Notu 100";
         durum = true;
       } else {
-        console.log(sinavNotu);
-
         harfNotu = "-";
         aciklama = "Not Hesaplanamadı";
       }
