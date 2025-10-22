@@ -43,18 +43,14 @@ function hesapla() {
     butunlemeNotu = parseFloat(document.getElementById("butunleme").value) || 0;
     yilIciNotu = parseFloat(document.getElementById("yilici").value) || 0;
 
-    // Eğer yıl içi notu girilmemişse, vize notunu yıl içi olarak kullan
     if (yilIciNotu == 0) {
       yilIciNotu = vizeNotu;
     }
 
-    // Dönem sonu sınavı: Bütünleme varsa onu kullan, yoksa final
     donemSonuNotu = butunlemeNotu > 0 ? butunlemeNotu : finalNotu;
 
-    // Başarı Notu = (Yıl İçi × 0.4) + (Dönem Sonu Sınavı × 0.6)
     basariNotu = yilIciNotu * 0.4 + donemSonuNotu * 0.6;
 
-    // Zorunlu alan kontrolleri - Artık yıl içi zorunlu değil
     if (vizeNotu == 0 || isNaN(vizeNotu)) {
       document.getElementById("uyari").style.display = "flex";
       document.getElementById("uyari").innerText =
